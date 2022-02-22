@@ -1,5 +1,8 @@
 use pyo3::{basic::PyObjectProtocol, prelude::*, types::PyType};
 use tantivy::schema;
+use crate::{
+    to_pyerr,
+};
 
 /// A Facet represent a point in a given hierarchy.
 ///

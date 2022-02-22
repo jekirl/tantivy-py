@@ -22,3 +22,4 @@ futures = "0.3.5"
 [dependencies.pyo3]
 version = "0.15.1"
 features = ["extension-module"]
+
