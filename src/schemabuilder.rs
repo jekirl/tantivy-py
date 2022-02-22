@@ -6,6 +6,7 @@ use tantivy::schema;
 
 use crate::schema::Schema;
 use std::sync::{Arc, RwLock};
+use tantivy::schema::INDEXED;
 
 /// Tantivy has a very strict schema.
 /// You need to specify in advance whether a field is indexed or not,
@@ -242,7 +243,7 @@ impl SchemaBuilder {
         let opts = SchemaBuilder::build_facet_option(stored, indexed)?;
 
         if let Some(builder) = builder.write().unwrap().as_mut() {
-            builder.add_facet_field(name, opts);
+            builder.add_facet_field(name, INDEXED);
         } else {
             return Err(exceptions::PyValueError::new_err(
                 "Schema builder object isn't valid anymore.",
@@ -269,7 +270,7 @@ impl SchemaBuilder {
 
         let opts = SchemaBuilder::build_bytes_option(stored, indexed, fast)?;
         if let Some(builder) = builder.write().unwrap().as_mut() {
-            builder.add_bytes_field(name, opts);
+            builder.add_bytes_field(name, INDEXED);
         } else {
             return Err(exceptions::PyValueError::new_err(
                 "Schema builder object isn't valid anymore.",
